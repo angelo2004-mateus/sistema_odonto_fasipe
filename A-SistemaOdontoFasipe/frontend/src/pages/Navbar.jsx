@@ -1,39 +1,89 @@
-import { NavLink } from 'react-router-dom'
-import './Navbar.scss'
+import { NavLink } from "react-router-dom";
+import "./Navbar.scss";
 
 import { TbSmartHome } from "react-icons/tb";
 import { TbCalendarDot } from "react-icons/tb";
 import { LuUsers } from "react-icons/lu";
 import { TbHealthRecognition } from "react-icons/tb";
-import { TbDental } from "react-icons/tb";
-import ProfileInfoForNavbar from '../components/ProfileInfoForNavbar';
+import { AiOutlineUnorderedList } from "react-icons/ai";
+
+import ProfileInfoForNavbar from "../components/ProfileInfoForNavbar";
+import { useState } from "react";
+import ShowNameLink from "../components/ShowNameLink";
 
 const Navbar = () => {
+  const [nameLink, setNameLink] = useState("");
+
+  const showNameLink = (name) => {
+    setNameLink(name);
+  };
+
   return (
-    <div className='navbar_container'>
-        <div className='navbar'> 
-            <div className='profile_container'>
-               <h2 className='logo'>Odon<span>tologia</span> <TbDental /></h2> 
+    <div className="navbar_container">
+      <div className="navbar">
+        <div className="profile_container">
+          <ProfileInfoForNavbar />
+        </div>
 
-               <ProfileInfoForNavbar />
-            </div>
-            
-            <nav>
-                <NavLink to="/" activeClassName="active">
-                    <TbSmartHome /> Início</NavLink>
+        <nav>
+          <NavLink
+            to="/"
+            onMouseEnter={() => showNameLink("Home")}
+            onMouseLeave={() => showNameLink("")}
+          >
+            <TbSmartHome />
+            {nameLink === "Home" && (
+              <ShowNameLink nameLink={nameLink} name="Home" />
+            )}
+          </NavLink>
 
-                <NavLink to="/sla">
-                    <TbCalendarDot /> Agenda</NavLink>
+          <NavLink
+            to="/agenda"
+            onMouseEnter={() => showNameLink("Agenda")}
+            onMouseLeave={() => showNameLink("")}
+          >
+            <TbCalendarDot />
+            {nameLink === "Agenda" && (
+              <ShowNameLink nameLink={nameLink} name="Agenda" />
+            )}
+          </NavLink>
 
-                <NavLink to="/paciente/cadastro">
-                    <LuUsers /> Pacientes</NavLink>
-                    
-                <NavLink to="/teste">
-                    <TbHealthRecognition /> Profissional</NavLink>
-         </nav>
-       </div>
+          <NavLink
+            to="/paciente/cadastro"
+            onMouseEnter={() => showNameLink("Cadastro de Paciente")}
+            onMouseLeave={() => showNameLink("")}
+          >
+            <LuUsers />
+            {nameLink === "Cadastro de Paciente" && (
+              <ShowNameLink nameLink={nameLink} name="Cadastro de Paciente" />
+            )}
+          </NavLink>
+
+          <NavLink
+            to="/paciente/listar"
+            onMouseEnter={() => showNameLink("Listar Pacientes")}
+            onMouseLeave={() => showNameLink("")}
+          >
+            <AiOutlineUnorderedList />
+            {nameLink === "Listar Pacientes" && (
+              <ShowNameLink nameLink={nameLink} name="Listar Pacientes" />
+            )}
+          </NavLink>
+
+          <NavLink
+            to="/profissional"
+            onMouseEnter={() => showNameLink("Profissionais")}
+            onMouseLeave={() => showNameLink("")}
+          >
+            <TbHealthRecognition />
+            {nameLink === "Profissionais" && (
+              <ShowNameLink nameLink={nameLink} name="Profissionais" />
+            )}
+          </NavLink>
+        </nav>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

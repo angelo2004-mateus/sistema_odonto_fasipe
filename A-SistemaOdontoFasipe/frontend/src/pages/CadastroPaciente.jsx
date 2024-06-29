@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { FiUser } from "react-icons/fi";
 
 import './CadastroPaciente.scss';
 
 const CadastroPaciente = () => {
+
+  
+
   // Estado para armazenar os valores dos inputs do formulário
   const [formData, setFormData] = useState({
     cpf_pac: '',
@@ -36,8 +42,9 @@ const CadastroPaciente = () => {
     event.preventDefault()
     console.log(formData);
     try {
-      axios.post('http://localhost:3000/paciente/cadastrar', formData)
-      
+      const response = axios.post('http://localhost:3000/paciente/cadastrar', formData)
+      toast("Paciente Cadastrado");
+      console.log(response)
     } catch (err) {
       console.log(err)
     }

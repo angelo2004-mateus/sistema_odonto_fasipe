@@ -1,66 +1,59 @@
-@import '../App.scss';
+@import "../App.scss";
 
 .navbar_container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+
+  .navbar {
+    height: 100%;
+    width: 50px;
+    border-right: 1px solid $border-color;
+    background-color: white;
+
+    .profile_container {
+      padding: 0px 20px;
+      padding-bottom: 20px;
+
+      .logo {
+        display: flex;
+        align-items: center;
+
+        span {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+
+  nav {
+    width: 100%;
     display: flex;
-    justify-content: end;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    min-width: 300px;
-    
-    .navbar {
-        height: 95%;
-        width: 95%;
-        border: 1px solid $border-color;
-        border-radius: 5px;
-        background-color: white;
+    gap: 10px;
+    padding: 10px 0;
+  }
 
-        .profile_container {
-            padding: 0px 20px;
-            padding-bottom: 20px;
-            
-            
-            .logo {
-                display: flex;
-                align-items: center;
-                
-                span {
-                    color: $color-primary;
-                }
-            }
-        }
- 
+  .active {
+    color: $color-primary;
+    background-color: $color-secondary;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: #344054;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 1.5;
     }
-
-    nav {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 0;
-    }
-
-    .active {
-        color: $color-primary;
-        background-color: $color-secondary;
-    }
-
-    a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px;
-        width: 80%;
-        color: #344054;
-        text-decoration: none;
-        border-radius: 3px;
-        font-weight: 600;
-        font-size: 16px;
-
-        svg {
-            width: 24px;
-            height: 24px;
-        }
-    }
-    
+  }
 }

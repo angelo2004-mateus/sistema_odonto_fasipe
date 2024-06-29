@@ -5,6 +5,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 const conn = require('../db/conn')
+const { result } = require('lodash')
 
 function cadastrarPaciente(req, res) {
     const { cpf_pac, nome_pac, cod_pac, tel_pac, cep_pac, logra_pac, num_logra_pac, compl_pac, bairro_pac, cidade_pac, uf_pac, rg_pac, est_rg_pac, nome_mae_pac, data_nasc_pac } = req.body;
@@ -49,34 +50,32 @@ function buscarTodosPacientes(req, res) {
 
 // Função para buscar paciente por nome ou CPF
 function buscarPaciente(req, res) {
-    const { query } = req;
-    const { nome_pac, cpf_pac } = query;
+  const { query } = req;
+  const searchQuery = query.search;
 
-    let queryStr = 'SELECT * FROM paciente WHERE ';
-    let values = [];
+  if (!searchQuery) {
+      return res.status(400).json({ mensagem: 'É necessário fornecer um valor para a pesquisa.' });
+  }
 
-    if (nome_pac) {
-        queryStr += 'nome_pac = ?';
-        values.push(nome_pac);
-    } else if (cpf_pac) {
-        queryStr += 'cpf_pac = ?';
-        values.push(cpf_pac);
-    } else {
-        return res.status(400).json({ mensagem: 'É necessário fornecer um nome ou CPF para buscar o paciente.' });
-    }
+  // Query SQL para buscar pacientes com nome_pac parecido com searchQuery ou cpf_pac igual a searchQuery
+  let queryStr = `
+      SELECT * FROM paciente 
+      WHERE nome_pac LIKE ? OR cpf_pac LIKE ?
+  `;
+  let values = [`%${searchQuery}%`, `%${searchQuery}%`]; // Adiciona '%' para buscar substrings parecidas com searchQuery
 
-    conn.query(queryStr, values, (error, results) => {
-        if (error) {
-            console.error('Erro ao buscar paciente:', error);
-            return res.status(500).json({ mensagem: 'Erro ao buscar paciente.' });
-        }
+  conn.query(queryStr, values, (error, results) => {
+      if (error) {
+          console.error('Erro ao buscar paciente:', error);
+          return res.status(500).json({ mensagem: 'Erro ao buscar paciente.' });
+      }
 
-        if (results.length === 0) {
-            return res.status(404).json({ mensagem: 'Paciente não encontrado.' });
-        }
+      if (results.length === 0) {
+          return res.status(404).json({ mensagem: 'Paciente não encontrado.' });
+      }
 
-        return res.status(200).json(results);
-    });
+      return res.status(200).json(results);
+  });
 }
 
 module.exports = {

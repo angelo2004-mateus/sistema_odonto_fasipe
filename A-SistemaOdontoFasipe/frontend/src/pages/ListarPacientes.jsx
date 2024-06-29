@@ -1,61 +1,72 @@
-import { useEffect, useState } from 'react'
-import './ListarPacientes.scss'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './ListarPacientes.scss';
+import axios from 'axios';
 
 const ListarPacientes = () => {
+  const navigate = useNavigate();
+  const [pacientes, setPacientes] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-    const [pacientes, setPacientes] = useState([])
+  useEffect(() => {
+    const getAllUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/paciente/todos_pacientes');
+        setPacientes(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-    useEffect(() => {
-        const getAllUsers = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/paciente/todos_pacientes')
-                console.log(response)
-                setPacientes(response.data)
-            } catch (err) {
-                console.log(err)
-            }
-        }
+    getAllUsers();
+  }, []);
 
-        getAllUsers()
-    }, [])
-    
+  const handleSearch = async () => {
+    try {
+      if (searchQuery === "") {
+        const response = await axios.get('http://localhost:3000/paciente/todos_pacientes');
+        setPacientes(response.data);
+        return;
+      }
+
+      const response = await axios.get(`http://localhost:3000/paciente/buscar_paciente?search=${searchQuery}`);
+      setPacientes(response.data);
+    } catch (error) {
+      console.error('Erro ao fazer a requisição:', error);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const registerAnmnese = (cpf_pac) => {
+    navigate(`/paciente/anamnese/:${cpf_pac}`);
+  };
+
   return (
     <section className='container_listar_pacientes'>
-        <div className='div_listagem'>
-
+      <div className='div_listagem'>
         <div className='header_container'>
-            <input type="text" />
-            <button>Pesquisar</button>
-
-            <select name="" id="">
-                <option value="">TODOS</option>
-                <option value="">MAIS RECENTES</option>
-                <option value="">ORDEM ALFABÉTICA</option>
-            </select>
+          <input type="text" value={searchQuery} onChange={handleInputChange} placeholder="Pesquisar paciente" />
+          <button onClick={handleSearch}>Pesquisar</button>
         </div>
 
-            <table className='tabela_pacientes'>
-                <thead>
-                    <tr>
-                        <th>CPF</th>
-                        <th>Nome</th>
-                        <th>Código</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {pacientes.map((paciente, index) => (
-                        <tr key={index}>
-                            <td>{paciente.cpf_pac}</td>
-                            <td>{paciente.nome_pac}</td>
-                            <td>{paciente.cod_pac}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className='pacientes_list'>
+          {pacientes.map((paciente, index) => (
+            <div key={index} className='paciente_card'>
+              <p><strong>CPF:</strong> {paciente.cpf_pac}</p>
+              <p><strong>Nome:</strong> {paciente.nome_pac}</p>
+              <p><strong>Código:</strong> {paciente.cod_pac}</p>
+              <button onClick={() => registerAnmnese(paciente.cpf_pac)} className='cadastrar_anamnese'>
+                Cadastrar Anamnese
+              </button>
+            </div>
+          ))}
         </div>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default ListarPacientes
+export default ListarPacientes;
