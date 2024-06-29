@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+$border-color: rgb(204, 204, 204);
+$border-color-focus: rgb(100, 100, 100);
+
+$color-primary: #009a3d;
+$color-primary-hover: #1abd5b;
+$color-secondary: #d9f3e3;
+
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+
+    .app {
+        display: flex;
+        align-items: center;
+        background-color: #f3f3f37c;
+        overflow: hidden;
+        height: 100vh;
+
+        .general_container {
+            width: 100%;
+            height: 95%;
+            
+        }
+    }
+}

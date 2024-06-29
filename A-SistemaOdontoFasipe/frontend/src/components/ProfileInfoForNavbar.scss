@@ -1,0 +1,35 @@
+@import '../App.scss';
+
+
+.profile_info_navbar {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    gap: 10px;
+
+    .profile_photo {
+        display: flex;
+        height: 50px;
+        width: 50px;
+        border: 1px solid $color-primary;
+        border-radius: 5px;
+        background-color: $color-secondary;
+    
+        span {
+            margin: auto;
+            font-size: 20px;
+            color: $color-primary;
+        }
+    }
+
+    .info_prof {
+        display: flex;
+        flex-direction: column;
+
+        .type_prof {
+            font-weight: 400;
+            color: $color-primary;
+        }
+    }
+}

@@ -1,0 +1,102 @@
+@import '../App.scss';
+
+.container_listar_pacientes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to left, $color-secondary, white);
+
+    .div_listagem {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 20px;
+        border-radius: 5px;
+        max-width: 1200px;
+        height: 50%;
+        width: 90%;
+        gap: 10px;
+        
+        .tabela_pacientes {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        
+            thead {
+                tr {
+                    background-color: $color-primary;
+                    color: #ffffff;
+                    text-align: left;
+                    font-weight: bold;
+                    
+                }
+            }
+        
+            th, td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+        
+            tbody {
+                tr {
+                    &:nth-of-type(even) {
+                        background-color: #f3f3f3;
+                    }
+
+                    &:nth-of-type(odd) {
+                        background-color: white;
+                    }
+                }
+        
+                td {
+                    &:first-of-type {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        .header_container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+
+            input, select {
+                height: 35px;
+                outline: none;
+                border: 1px solid $border-color;
+                border-radius: 3px;
+                flex: 1 1 300px;
+                padding: 0 10px;
+            }
+
+            select {
+                max-width: 200px;
+            }
+
+            input:focus, select:focus {
+                border: 1px solid $color-primary;
+            }
+
+            button {
+                background-color: $color-primary;
+                border: 1px solid #1abd5b;
+                outline: none;
+                border-radius: 3px;
+                color: white;
+                transition: .3s;
+                font-size: 16px;
+                color: white;
+            }
+    
+            button:hover {
+                opacity: 70%;
+            }
+        }
+    }
+}

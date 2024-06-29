@@ -1,0 +1,29 @@
+const express = require('express')
+const app = express()
+const cors = require('cors')
+const conn = require('./src/db/conn')
+
+app.use(cors({
+    origin: true,
+    credentials: true
+}))
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+
+
+// Rotas Relacionada a Paciente
+const { cadastrarPaciente, buscarTodosPacientes, buscarPaciente } = require('./src/controllers/PacienteController')
+
+app.post('/paciente/cadastrar', cadastrarPaciente)
+app.get('/paciente/todos_pacientes', buscarTodosPacientes);
+app.get('/paciente/buscar_paciente', buscarPaciente);
+
+
+require('dotenv').config()
+
+const env = process.env.NODE_ENV
+const { port } = require(`./src/config/config.${env}.json`)
+
+app.listen(port, console.log('Servidor Rodando na porta', port))
