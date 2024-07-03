@@ -1,0 +1,18 @@
+@import '../App.scss';
+
+.showNameLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 60px;
+    padding: 0 10px;
+    border: 1px solid $color-primary;
+    color: $color-primary;
+    background-color: $color-secondary;
+    font-size: 12px;
+    font-weight: 500;
+    height: 30px;
+    border-radius: 5px;
+    z-index: 1000;
+}

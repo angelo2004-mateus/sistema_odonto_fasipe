@@ -1,17 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './ListarPacientes.scss';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import photo_plant from "../img/photo-plant.jpeg";
+import "./ListarPacientes.scss";
+import axios from "axios";
 
 const ListarPacientes = () => {
   const navigate = useNavigate();
   const [pacientes, setPacientes] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const getAllUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/paciente/todos_pacientes');
+        const response = await axios.get(
+          "http://localhost:3000/paciente/todos_pacientes"
+        );
         setPacientes(response.data);
       } catch (err) {
         console.log(err);
@@ -24,15 +27,19 @@ const ListarPacientes = () => {
   const handleSearch = async () => {
     try {
       if (searchQuery === "") {
-        const response = await axios.get('http://localhost:3000/paciente/todos_pacientes');
+        const response = await axios.get(
+          "http://localhost:3000/paciente/todos_pacientes"
+        );
         setPacientes(response.data);
         return;
       }
 
-      const response = await axios.get(`http://localhost:3000/paciente/buscar_paciente?search=${searchQuery}`);
+      const response = await axios.get(
+        `http://localhost:3000/paciente/buscar_paciente?search=${searchQuery}`
+      );
       setPacientes(response.data);
     } catch (error) {
-      console.error('Erro ao fazer a requisição:', error);
+      console.error("Erro ao fazer a requisição:", error);
     }
   };
 
@@ -45,21 +52,32 @@ const ListarPacientes = () => {
   };
 
   return (
-    <section className='container_listar_pacientes'>
-      <div className='div_listagem'>
-        <div className='header_container'>
-          <input type="text" value={searchQuery} onChange={handleInputChange} placeholder="Pesquisar paciente" />
+    <section className="container_listar_pacientes">
+      <div className="div_listagem">
+        <div className="header_container">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleInputChange}
+            placeholder="Pesquisar paciente"
+          />
           <button onClick={handleSearch}>Pesquisar</button>
         </div>
 
-        <div className='pacientes_list'>
+        <div className="pacientes_list">
           {pacientes.map((paciente, index) => (
-            <div key={index} className='paciente_card'>
-              <p><strong>CPF:</strong> {paciente.cpf_pac}</p>
-              <p><strong>Nome:</strong> {paciente.nome_pac}</p>
-              <p><strong>Código:</strong> {paciente.cod_pac}</p>
-              <button onClick={() => registerAnmnese(paciente.cpf_pac)} className='cadastrar_anamnese'>
-                Cadastrar Anamnese
+            <div key={index} className="paciente_card">
+              <p className="name">
+                <b>{paciente.nome_pac}</b>
+              </p>
+              <p className="cpf">
+                {paciente.cpf_pac}
+              </p>
+              <button
+                onClick={() => registerAnmnese(paciente.cpf_pac)}
+                className="view_details"
+              >
+                Ver Detalhes
               </button>
             </div>
           ))}
@@ -68,5 +86,4 @@ const ListarPacientes = () => {
     </section>
   );
 };
-
 export default ListarPacientes;

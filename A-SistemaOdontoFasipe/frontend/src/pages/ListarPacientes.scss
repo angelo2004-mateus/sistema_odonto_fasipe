@@ -1,7 +1,6 @@
 @import "../App.scss";
 
 .container_listar_pacientes {
-  background-color: $color-secondary;
   display: flex;
   align-items: center;
   height: 100%;
@@ -14,17 +13,51 @@
 
   .pacientes_list {
     flex-wrap: wrap;
-    height: 100%;
     display: flex;
     gap: 10px;
 
     .paciente_card {
+      display: flex;
+      flex-direction: column;
       background-color: white;
       flex: 1 1 300px;
       max-width: 250px;
-      height: 200px;
-      border-radius: 5px;
+      border-radius: 3px;
+      gap: 10px;
       padding: 10px;
+      overflow: hidden;
+      border: 1px solid $color-primary;
+
+      button {
+        padding: 6px;
+        width: 100%;
+        border: 1px solid $color-primary;
+        color: $color-primary;
+        background-color: white;
+        border-radius: 3px;
+        transition: 0.3s;
+        cursor: pointer;
+        font-size: 15px;
+        
+      }
+
+      p {
+        z-index: 100;
+      }
+
+      .name {
+        font-size: 18px;
+      }
+
+      .cpf {
+        font-size: 14px;
+        position: relative;
+        margin-top: -15px;
+
+        span {
+          font-weight: 900;
+        }
+      }
     }
   }
 }

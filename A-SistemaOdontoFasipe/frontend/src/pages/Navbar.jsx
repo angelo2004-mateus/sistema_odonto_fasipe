@@ -5,7 +5,6 @@ import { TbSmartHome } from "react-icons/tb";
 import { TbCalendarDot } from "react-icons/tb";
 import { LuUsers } from "react-icons/lu";
 import { TbHealthRecognition } from "react-icons/tb";
-import { AiOutlineUnorderedList } from "react-icons/ai";
 
 import ProfileInfoForNavbar from "../components/ProfileInfoForNavbar";
 import { useState } from "react";
@@ -56,17 +55,6 @@ const Navbar = () => {
             <LuUsers />
             {nameLink === "Cadastro de Paciente" && (
               <ShowNameLink nameLink={nameLink} name="Cadastro de Paciente" />
-            )}
-          </NavLink>
-
-          <NavLink
-            to="/paciente/listar"
-            onMouseEnter={() => showNameLink("Listar Pacientes")}
-            onMouseLeave={() => showNameLink("")}
-          >
-            <AiOutlineUnorderedList />
-            {nameLink === "Listar Pacientes" && (
-              <ShowNameLink nameLink={nameLink} name="Listar Pacientes" />
             )}
           </NavLink>
 

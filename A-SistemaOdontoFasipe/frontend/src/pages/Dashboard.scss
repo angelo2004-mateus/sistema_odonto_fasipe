@@ -1,0 +1,29 @@
+@import "../App.scss";
+
+.dashboard_section {
+  width: 80%;
+  height: 100%;
+  gap: 20px;
+  .container_info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+      height: 50px;
+      flex: 1 1 300px;
+      max-width: 300px;
+      background-color: $color-primary;
+      color: white;
+      border-radius: 2px;
+
+      p {
+        margin-top: -15px;
+      }
+    }
+  }
+}
