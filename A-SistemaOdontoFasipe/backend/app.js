@@ -15,7 +15,9 @@ app.use(express.urlencoded({ extended: true }))
 
 // Rotas Relacionada a Paciente
 const { cadastrarPaciente, buscarTodosPacientes, buscarPaciente } = require('./src/controllers/PacienteController')
+const { cadastrarAnamnese } = require('./src/controllers/AnamneseController');
 
+app.post('/paciente/cadastrarAnamnese', cadastrarAnamnese)
 app.post('/paciente/cadastrar', cadastrarPaciente)
 app.get('/paciente/todos_pacientes', buscarTodosPacientes);
 app.get('/paciente/buscar_paciente', buscarPaciente);
