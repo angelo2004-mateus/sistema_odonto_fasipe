@@ -4,6 +4,7 @@ import photo_plant from "../img/photo-plant.jpeg";
 import "./ListarPacientes.scss";
 import axios from "axios";
 
+
 const ListarPacientes = () => {
   const navigate = useNavigate();
   const [pacientes, setPacientes] = useState([]);

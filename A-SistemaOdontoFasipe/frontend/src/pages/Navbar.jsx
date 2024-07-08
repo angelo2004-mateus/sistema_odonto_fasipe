@@ -13,15 +13,15 @@ import ShowNameLink from "../components/ShowNameLink";
 const Navbar = () => {
   const [nameLink, setNameLink] = useState("");
 
-  const showNameLink = (name) => {
-    setNameLink(name);
-  };
+  // const showNameLink = (name) => {
+  //   setNameLink(name);
+  // };
 
   return (
     <div className="navbar_container">
       <div className="navbar">
         <div className="profile_container">
-          <ProfileInfoForNavbar />
+          {/* <ProfileInfoForNavbar /> */}
         </div>
 
         <nav>
@@ -30,7 +30,7 @@ const Navbar = () => {
             onMouseEnter={() => showNameLink("Home")}
             onMouseLeave={() => showNameLink("")}
           >
-            <TbSmartHome />
+            <TbSmartHome /> Dashboard
             {nameLink === "Home" && (
               <ShowNameLink nameLink={nameLink} name="Home" />
             )}
@@ -41,7 +41,7 @@ const Navbar = () => {
             onMouseEnter={() => showNameLink("Agenda")}
             onMouseLeave={() => showNameLink("")}
           >
-            <TbCalendarDot />
+            <TbCalendarDot /> Agenda
             {nameLink === "Agenda" && (
               <ShowNameLink nameLink={nameLink} name="Agenda" />
             )}
@@ -52,7 +52,7 @@ const Navbar = () => {
             onMouseEnter={() => showNameLink("Cadastro de Paciente")}
             onMouseLeave={() => showNameLink("")}
           >
-            <LuUsers />
+            <LuUsers /> Pacientes
             {nameLink === "Cadastro de Paciente" && (
               <ShowNameLink nameLink={nameLink} name="Cadastro de Paciente" />
             )}
@@ -63,7 +63,7 @@ const Navbar = () => {
             onMouseEnter={() => showNameLink("Profissionais")}
             onMouseLeave={() => showNameLink("")}
           >
-            <TbHealthRecognition />
+            <TbHealthRecognition /> Profissionais
             {nameLink === "Profissionais" && (
               <ShowNameLink nameLink={nameLink} name="Profissionais" />
             )}
