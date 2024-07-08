@@ -47,8 +47,8 @@ const ListarPacientes = () => {
     setSearchQuery(event.target.value);
   };
 
-  const registerAnmnese = (cpf_pac) => {
-    navigate(`/paciente/anamnese/:${cpf_pac}`);
+  const registerAnmnese = (paciente) => {
+    navigate(`/paciente/cadastroAnamnese`, { state: { paciente } });
   };
 
   return (
@@ -70,11 +70,9 @@ const ListarPacientes = () => {
               <p className="name">
                 <b>{paciente.nome_pac}</b>
               </p>
-              <p className="cpf">
-                {paciente.cpf_pac}
-              </p>
+              <p className="cpf">{paciente.cpf_pac}</p>
               <button
-                onClick={() => registerAnmnese(paciente.cpf_pac)}
+                onClick={() => registerAnmnese(paciente)}
                 className="view_details"
               >
                 Ver Detalhes
@@ -86,4 +84,5 @@ const ListarPacientes = () => {
     </section>
   );
 };
+
 export default ListarPacientes;
