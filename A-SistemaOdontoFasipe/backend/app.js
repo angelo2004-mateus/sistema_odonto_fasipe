@@ -17,12 +17,15 @@ app.use(express.urlencoded({ extended: true }))
 const { cadastrarPaciente, buscarTodosPacientes, buscarPaciente } = require('./src/controllers/PacienteController')
 const { cadastrarAnamnese } = require('./src/controllers/AnamneseController');
 
-app.post('/paciente/cadastrarAnamnese', cadastrarAnamnese)
+app.post('/anamnese/cadastrar', cadastrarAnamnese)
+
+
 app.post('/paciente/cadastrar', cadastrarPaciente)
 app.get('/paciente/todos_pacientes', buscarTodosPacientes);
 app.get('/paciente/buscar_paciente', buscarPaciente);
 
 // Rotas relacionadas ao Supervisor
+
 
 require('dotenv').config()
 

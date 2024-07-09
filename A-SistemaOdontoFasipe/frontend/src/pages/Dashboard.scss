@@ -1,84 +1,21 @@
 @import "../App.scss";
 
 .dashboard_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
-  gap: 20px;
-
-  .container_info {
-    position: relative;
+  
+  .name_page_section {
     display: flex;
-    justify-content: center;
-    padding: 30px 0;
-    background-position: center;
-    background-size: cover;
+    align-items: center;
+    width: 100%;
+    height: 100px;
 
-    .container_info_children {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      width: 90%;
-      max-width: 1200px;
-      padding: 0 20px;
-    }
-
-    .info {
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      height: 70px;
-      gap: 20px;
-      flex: 1 1 250px;
-      color: white;
-      border-radius: 5px;
-      z-index: 2;
-      border: 1px solid $color-primary;
-      background-color: rgb(255, 255, 255);
-      background-position: center;
-      background-size: cover;
-      padding: 0px 20px;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        backdrop-filter: blur(10px);
-      }
-
-      span {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        width: 50px;
-        border-radius: 100px;
-        border: 2px solid $color-primary;
-        background-color: $color-secondary;
-        svg {
-          font-size: 30px;
-          color: $color-primary;
-        }
-      }
-
-      p {
-        opacity: 80%;
-        margin-bottom: -15px;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        white-space: nowrap;
-      }
-
-      h2 {
-        font-size: 20px;
-        color: $color-secondary;
-      }
+    h2 {
+      font-weight: 400;
+      font-size: clamp(30px, 20px, 20px);
     }
   }
 }

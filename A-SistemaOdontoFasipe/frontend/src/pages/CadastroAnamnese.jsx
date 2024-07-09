@@ -58,20 +58,25 @@ const CadastroAnamnese = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(name, value)
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
-    try {
-      const response = await axios.post('http://localhost:3000/paciente/cadastrarAnamnese', formData);
-      toast.success("Anamnese cadastrada com sucesso!");
-      console.log(response);
-    } catch (err) {
-      toast.error("Erro ao cadastrar anamnese. Por favor, tente novamente.");
-      console.log(err);
-    }
+
+    localStorage.setItem("formData", formData)
+
+    console(localStorage.getItem("formData"))
+    // try {
+    //   const response = await axios.post('http://localhost:3000/anamnese/cadastrar', formData);
+    //   toast.success("Anamnese cadastrada com sucesso!");
+    //   console.log(response);
+    // } catch (err) {
+    //   toast.error("Erro ao cadastrar anamnese. Por favor, tente novamente.");
+    //   console.log(err);
+    // }
   };
 
   return (
@@ -96,8 +101,8 @@ const CadastroAnamnese = () => {
         <div className="select-form"> 
           <select id="anm_sexo" name="anm_sexo" value={formData.anm_sexo} onChange={handleInputChange} required>
             <option value="">Sexo do paciente</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
           </select> 
         </div>
         
@@ -145,7 +150,7 @@ const CadastroAnamnese = () => {
         
         {/* Condição da boca */}
         <input type="text" id="anm_boca" name="anm_boca" maxLength="100" placeholder='Condição da boca' value={formData.anm_boca} onChange={handleInputChange} />
-        
+  
         {/* Hábitos bucais do paciente */}
         <input type="text" id="anm_hab_bucais" name="anm_hab_bucais" maxLength="100" placeholder='Hábitos bucais do paciente' value={formData.anm_hab_bucais} onChange={handleInputChange} />
         
@@ -191,7 +196,7 @@ const CadastroAnamnese = () => {
         </div>
         
         {/* Botão para enviar o formulário */}
-        <button className='btn' type='submit'>Cadastrar Anamnese</button>
+        <button className='btn' type='submit'>CADASTRAR</button>
       </form>
     </div>
     <ToastContainer />
