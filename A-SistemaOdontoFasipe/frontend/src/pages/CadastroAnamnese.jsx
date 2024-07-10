@@ -61,6 +61,23 @@ const CadastroAnamnese = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+
+
+  
+  const handleNumericChange = (event, field, maxLength) => {
+    const value = event.target.value;
+    const regex = /^[0-9\b]+$/;
+
+    // Permite apenas números e limita ao número de caracteres especificado
+    if (value === '' || (regex.test(value) && value.length <= maxLength)) {
+      setFormData({ ...formData, [field]: value });
+    }
+  };
+
+
+localStorage.setItem(formData.cpf_pac, JSON.stringify(formData));
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -84,25 +101,25 @@ const CadastroAnamnese = () => {
       
       <form className='form' method='POST' onSubmit={handleSubmit}>
         {/* CPF do paciente */}
-        <input type="number" id="cpf_pac" name="cpf_pac" maxLength="11" required placeholder='CPF' value={formData.cpf_pac} onChange={handleInputChange} />
+        <input type="text" id="cpf_pac" name="cpf_pac" maxLength="11" required placeholder='CPF' value={formData.cpf_pac} onChange={(e) => handleNumericChange(e, 'cpf_pac', 11)} />
         
         {/* Nome do paciente */}
         <input type="text" id="anm_nome" name="anm_nome" maxLength="100" required placeholder='Nome' value={formData.anm_nome} onChange={handleInputChange} />
         
         {/* Idade do paciente */}
-        <input type="number" id="anm_idade" name="anm_idade" maxLength="2" required placeholder='Idade' value={formData.anm_idade} onChange={handleInputChange} />
+        <input type="text" id="anm_idade" name="anm_idade" maxLength="2" required placeholder='Idade' value={formData.anm_idade} onChange={(e) => handleNumericChange(e, 'anm_idade', 2)} />
         
         {/* Sexo do paciente */}
         <div className="select-form"> 
           <select id="anm_sexo" name="anm_sexo" value={formData.anm_sexo} onChange={handleInputChange} required>
             <option value="">Sexo do paciente</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
           </select> 
         </div>
         
         {/* RG do paciente */}
-        <input type="number" id="anm_rg" name="anm_rg" maxLength="9" placeholder='RG' value={formData.anm_rg} onChange={handleInputChange} />
+        <input type="text" id="anm_rg" name="anm_rg" maxLength="9" placeholder='RG' value={formData.anm_rg} onChange={(e) => handleNumericChange(e, 'anm_rg', 9)} />
 
         {/* Estado de saude do paciente */}
         <input type="text" id="anm_estado_saude" name="anm_estado_saude" maxLength="100" placeholder='Estado de saude' value={formData.anm_estado_saude} onChange={handleInputChange} />
@@ -111,10 +128,10 @@ const CadastroAnamnese = () => {
         <input type="text" id="anm_trata_med" name="anm_trata_med" maxLength="100" placeholder='Tratamento médico' value={formData.anm_trata_med} onChange={handleInputChange} />
         
         {/* Código de identificação do profissional */}
-        <input type="number" id="cod_prof" name="cod_prof" maxLength="5" placeholder='Código do profissional' value={formData.cod_prof} onChange={handleInputChange} />
+        <input type="text" id="cod_prof" name="cod_prof" maxLength="5" placeholder='Código do profissional' value={formData.cod_prof} onChange={(e) => handleNumericChange(e, 'cod_prof', 5)} />
         
         {/* Medicamento em uso do Paciente */}
-        <input type="text" id="anm_med_uso" name="anm_med_uso" maxLength="5" placeholder='Medicamento em uso' value={formData.anm_med_uso} onChange={handleInputChange} />
+        <input type="text" id="anm_med_uso" name="anm_med_uso" maxLength="2000" placeholder='Medicamento em uso' value={formData.anm_med_uso} onChange={handleInputChange} />
         
         {/* Tratamentos anterioes do Paciente */}
         <input type="text" id="anm_trata_antes" name="anm_trata_antes" maxLength="50" placeholder='Tratamentos anteriores' value={formData.anm_trata_antes} onChange={handleInputChange} />
