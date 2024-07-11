@@ -68,7 +68,7 @@ input:not(:placeholder-shown) + .placeholder {
 
             textarea {
                 min-height: 150px; 
-                resize: vertical; 
+                resize: horizontal; 
             }
 
             input:focus,

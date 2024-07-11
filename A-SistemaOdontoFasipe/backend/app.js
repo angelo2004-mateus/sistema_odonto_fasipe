@@ -14,8 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const { cadastrarPaciente, buscarTodosPacientes, buscarPaciente } = require('./src/controllers/PacienteController');
 const { cadastrarAnamnese } = require('./src/controllers/AnamneseController');
-
-const PlanoTratamentoController = require('./src/controllers/PlanoTratamentoController'); // Ajuste o caminho se necessário
+const PlanoTratamentoController = require('./src/controllers/PlanoTratamentoController'); 
 
 
 app.post('/paciente/cadastrar', cadastrarPaciente);
@@ -23,11 +22,12 @@ app.get('/paciente/todos_pacientes', buscarTodosPacientes);
 app.get('/paciente/buscar_paciente', buscarPaciente);
 
 
-
 app.post('/paciente/cadastrarAnamnese', cadastrarAnamnese);
+
+
 app.use('/plano-tratamento', PlanoTratamentoController);
 
-
+// Outras rotas ...
 
 const env = process.env.NODE_ENV;
 const { port } = require(`./src/config/config.${env}.json`);
