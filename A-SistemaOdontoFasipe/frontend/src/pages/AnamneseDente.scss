@@ -48,8 +48,8 @@
         .teethRow {
           display: flex;
           justify-content: flex-end;
-          gap: 13px; /* Ajuste o espaço entre as checkboxes */
-          margin-bottom: 100px; /* Espaço entre as fileiras de checkboxes */
+          gap: 13px; 
+          margin-bottom: 100px; 
           margin-top: 190px;
 
           .checkboxContainer {
@@ -64,11 +64,11 @@
           }
         }
         button {
-          background-color: $color-secondary;
-          border: 1px solid #1abd5b;
+          background-color: $color-primary;
+          border: none;
           outline: none;
-          border-radius: 3px;
-          color: grey;
+          border-radius: 6px;
+          color: white;
           padding: 10px 40px;
           transition: 0.3s;
           font-size: 16px;

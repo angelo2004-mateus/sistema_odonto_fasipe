@@ -112,20 +112,21 @@
         }
 
         button {
-            background-color: $color-secondary;
-            border: 1px solid #1abd5b;
+            background-color: $color-primary;
+            color: white;
+            border: none;
             outline: none;
-            border-radius: 3px;
+            border-radius: 2px;
             color: white;
             padding: 0 80px;
-            transition: .3s;
+ 
             font-size: 16px;
-            color: $color-primary;
+            
         }
-
         button:hover {
-            opacity: 70%;
-        }
+            opacity: 0.7;
+          }
+        
     }
 
     @media (max-width: 700px) {
@@ -141,25 +142,24 @@
 }
 
 .select-form {
-    width: 100%; // Ocupa o mesmo tamanho que os outros retângulos
+    width: 100%; 
     position: relative;
     padding: 0px;
     display: flex;
     justify-content: left;
-    flex: 1 1 300px; // Ajuste conforme necessário
-  
+    flex: 1 1 300px; 
     select {
-      width: 100%; // Ocupa o mesmo tamanho que os outros inputs
-      padding: 2px 4.8px; // Ajuste conforme necessário
+      width: 100%; 
+      padding: 2px 4.8px; 
       font-size: 13px;
       border: 1px solid $border-color;
       border-radius: 3px;
       opacity: 70%;
-      text-align: left; // Alinha o texto à esquerda
+      text-align: left; 
   
       &:hover,
       &:focus {
-        border-color: #1abd5b; // Altera a cor da borda ao passar o mouse ou foco
+        border-color: #1abd5b; 
       }
     }
   

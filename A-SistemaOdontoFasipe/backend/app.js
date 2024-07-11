@@ -23,11 +23,9 @@ app.get('/paciente/buscar_paciente', buscarPaciente);
 
 
 app.post('/paciente/cadastrarAnamnese', cadastrarAnamnese);
-
-
 app.use('/plano-tratamento', PlanoTratamentoController);
 
-// Outras rotas ...
+
 
 const env = process.env.NODE_ENV;
 const { port } = require(`./src/config/config.${env}.json`);
