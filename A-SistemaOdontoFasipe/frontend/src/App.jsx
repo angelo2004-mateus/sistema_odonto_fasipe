@@ -1,5 +1,4 @@
 import "./App.scss";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import CadastroPaciente from "./pages/CadastroPaciente";
@@ -9,8 +8,6 @@ import ListarPacientes from "./pages/ListarPacientes";
 import CadastroAnamnese from "./pages/CadastroAnamnese";
 import AnamneseDente from "./pages/AnamneseDente";
 import PlanoTratamento from "./pages/PlanoTratamento";
-
-
 
 function App() {
   return (
@@ -24,9 +21,8 @@ function App() {
             <Route path="/paciente/deletar" element={<Paciente />} />
             <Route path="/paciente/listarPacientes" element={<ListarPacientes />} />
             <Route path="/paciente/cadastroAnamnese" element={<CadastroAnamnese />} />
-            <Route path="/paciente/cadastroDente" element={<AnamneseDente />} />
-            <Route path="/paciente/planoTratamento" element={<PlanoTratamento />} />
-            
+            <Route path="/cadastro-dentes/:cpf_pac" element={<AnamneseDente />} />
+            <Route path="/plano-tratamento/:cpf_pac" element={<PlanoTratamento />} />
           </Routes>
         </div>
       </BrowserRouter>

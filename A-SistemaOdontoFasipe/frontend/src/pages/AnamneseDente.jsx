@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FiUser } from 'react-icons/fi'
-import './CadastroDentes.scss';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FiUser } from 'react-icons/fi';
+import './AnamneseDente.scss';
 
 const upperTeeth = [18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28];
 const lowerTeeth = [48, 47, 46, 45, 44, 43, 42, 41, 31, 32, 33, 34, 35, 36, 37, 38];
 
 const CadastroDentes = () => {
-  const [selectedTeeth, setSelectedTeeth] = useState([]);
+  const { cpf_pac } = useParams();
   const navigate = useNavigate();
+  const [anm_dente, setSelectedTeeth] = useState([]);
+
+  useEffect(() => {
+    
+    const previousData = JSON.parse(localStorage.getItem(`anamneseDente_${cpf_pac}`)) || [];
+    setSelectedTeeth(previousData);
+  }, [cpf_pac]);
 
   const handleCheckboxChange = (event) => {
     const value = parseInt(event.target.value, 10);
@@ -21,19 +30,18 @@ const CadastroDentes = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    localStorage.setItem('selectedTeeth', JSON.stringify(selectedTeeth));
-    console.log('Selected Teeth:', selectedTeeth);
-    navigate('/proxima-rota'); // Navegar para a próxima rota após o envio
+    localStorage.setItem(`anamneseDente_${cpf_pac}`, JSON.stringify(anm_dente));
+    toast.success('Marcações de dentes salvas com sucesso!');
+    navigate(`/plano-tratamento/${cpf_pac}`);
   };
 
   return (
     <section className='container_cadastro_paciente'>
-    <div className='container_button_form'>
-      <div className='title'>
-        <span className='icon'><FiUser /></span> {/* Ícone FiUser adicionado aqui */}
-        <h2>Cadastro Dente</h2>
-      </div>
-
+      <div className='container_button_form'>
+        <div className='title'>
+          <span className='icon'><FiUser /></span>
+          <h2>Cadastro Dente</h2>
+        </div>
         <div className="backgroundImageContainer">
           <form onSubmit={handleSubmit} className="checkboxForm">
             <div className="teethRow">
@@ -43,7 +51,7 @@ const CadastroDentes = () => {
                     <input
                       type="checkbox"
                       value={number}
-                      checked={selectedTeeth.includes(number)}
+                      checked={anm_dente.includes(number)}
                       onChange={handleCheckboxChange}
                     />
                     {number}
@@ -58,7 +66,7 @@ const CadastroDentes = () => {
                     <input
                       type="checkbox"
                       value={number}
-                      checked={selectedTeeth.includes(number)}
+                      checked={anm_dente.includes(number)}
                       onChange={handleCheckboxChange}
                     />
                     {number}
@@ -72,6 +80,7 @@ const CadastroDentes = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

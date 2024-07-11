@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './PlanoTratamento.scss';
 
 const PlanoTratamento = () => {
-  const { cpf } = useParams(); // Pegando o CPF da URL
+  const { cpf_pac } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    sessao: '',
-    planejamento: ''
+    teste1: '',
+    teste2: '',
+    teste3: '',
+    cpf_pac
   });
 
   useEffect(() => {
-    if (cpf) {
-      setFormData({ ...formData, cpf_pac: cpf });
+    const anamneseData = JSON.parse(localStorage.getItem(cpf_pac));
+    const dentesData = JSON.parse(localStorage.getItem(`anamneseDente_${cpf_pac}`));
+    
+    if (anamneseData && dentesData) {
+      setFormData({
+        ...anamneseData,
+        dentes: dentesData
+      });
     }
-  }, [cpf]);
+  }, [cpf_pac]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -25,59 +34,38 @@ const PlanoTratamento = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    // Recuperando dados do localStorage usando CPF
-    const cadastroAnamnese = JSON.parse(localStorage.getItem(cpf));
-    const anamneseDente = JSON.parse(localStorage.getItem(`Dente_${cpf}`)); // Supondo que os dados dos dentes estão armazenados com a chave `Dente_{cpf}`
-
-    if (!cadastroAnamnese || !anamneseDente) {
-      toast.error("Dados de anamnese ou dentes não encontrados para o CPF fornecido.");
-      return;
-    }
-
-    const dataToSubmit = {
-      ...cadastroAnamnese,
-      ...anamneseDente,
-      sessao: formData.sessao,
-      planejamento: formData.planejamento
-    };
-
-    console.log('Data to Submit:', dataToSubmit);
-
     try {
-      const response = await axios.post('http://localhost:3000/paciente/cadastrarPlanoTratamento', dataToSubmit);
-      toast.success("Plano de tratamento cadastrado com sucesso!");
-      console.log(response);
-    } catch (err) {
-      toast.error("Erro ao cadastrar plano de tratamento. Por favor, tente novamente.");
-      console.log(err);
+      const response = await axios.post(`http://localhost:3000/plano-tratamento/${cpf_pac}`, formData);
+      toast.success('Plano de Tratamento salvo com sucesso!');
+      localStorage.removeItem(cpf_pac);
+      localStorage.removeItem(`anamneseDente_${cpf_pac}`);
+    } catch (error) {
+      console.error('Erro ao salvar plano de tratamento:', error);
+      toast.error('Erro ao salvar plano de tratamento.');
     }
   };
 
   return (
-    <section className='container_plano_tratamento'>
-      <div className='container_form'>
-        <div className='title'>
+    <div className="container_plano_tratamento">
+      <div className="container_form">
+        <div className="title">
           <h2>Plano de Tratamento</h2>
         </div>
-        
-        <form className='form' onSubmit={handleSubmit}>
-          {/* CPF do paciente */}
-          <input type="text" id="cpf" name="cpf" required placeholder='CPF do Paciente' value={cpf} readOnly />
-          
-          {/* Sessão do tratamento */}
-          <input type="text" id="sessao" name="sessao" required placeholder='Sessão' value={formData.sessao} onChange={handleInputChange} />
-          
-          {/* Planejamento de procedimentos */}
-          <input type="text" id="planejamento" name="planejamento" required placeholder='Planejamento de Procedimentos' value={formData.planejamento} onChange={handleInputChange} />
-          
-          {/* Botão para enviar o formulário */}
-          <button className='btn' type='submit'>Enviar</button>
+        <form onSubmit={handleSubmit} className="form">
+          <input type="text" id="cpf_pac" name="cpf_pac" maxLength="11" value={formData.cpf_pac} onChange={handleInputChange} placeholder="CPF do paciente" required />
+          <textarea id="planejamento_proced" name="planejamento_proced" value={formData.planejamento_proced} onChange={handleInputChange} placeholder="Planejamento do procedimento" required></textarea>
+          <div className="input-container">
+            <input type="date" id="sessao_proced" name="sessao_proced" value={formData.sessao_proced} onChange={handleInputChange} />
+            <span className={`placeholder ${formData.sessao_proced ? 'hidden' : ''}`}>
+              Sessão
+            </span>
+          </div>
+          <button type="submit" className="btn">Enviar</button>
         </form>
+        <ToastContainer />
       </div>
-      <ToastContainer />
-    </section>
+    </div>
   );
-}
+};
 
 export default PlanoTratamento;
