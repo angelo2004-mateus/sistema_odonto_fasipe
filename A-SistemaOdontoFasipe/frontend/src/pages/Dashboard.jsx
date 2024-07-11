@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.scss";
-import ListarPacientes from "../components/ListarPacientes";
+
 
 const Dashboard = () => {
   const [hours, setHours] = useState(new Date());
@@ -18,9 +18,7 @@ const Dashboard = () => {
      <div className="name_page_section">
         <h2>Dashboard</h2>
      </div>
-     <div className="list_pacient">
-        <ListarPacientes />
-     </div>
+     
     </section>
   );
 };
