@@ -74,6 +74,8 @@ const CadastroAnamnese = () => {
     navigate(`/cadastro-dentes/${formData.cpf_pac}`);
   };
 
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <section className='container_cadastro_paciente'>
       <div className='container_button_form'>
@@ -175,7 +177,7 @@ const CadastroAnamnese = () => {
           
           {/* Ultima visita do paciente ao médico */}
           <div className="input-container">
-            <input type="date" id="anm_ult_visita_med" name="anm_ult_visita_med" value={formData.anm_ult_visita_med} onChange={handleInputChange} />
+            <input type="date" id="anm_ult_visita_med" name="anm_ult_visita_med" value={formData.anm_ult_visita_med} onChange={handleInputChange} max={today} />
             <span className={`placeholder ${formData.anm_ult_visita_med ? 'hidden' : ''}`}>
               Última visita Médica
             </span>
@@ -183,7 +185,7 @@ const CadastroAnamnese = () => {
 
           {/* Ultima visita do paciente ao dentista */}
           <div className="input-container">
-            <input type="date" id="anm_ult_visita_dent" name="anm_ult_visita_dent" value={formData.anm_ult_visita_dent} onChange={handleInputChange} />
+            <input type="date" id="anm_ult_visita_dent" name="anm_ult_visita_dent" value={formData.anm_ult_visita_dent} onChange={handleInputChange} max={today} />
             <span className={`placeholder ${formData.anm_ult_visita_dent ? 'hidden' : ''}`}>
               Última Visita ao dentista
             </span>
