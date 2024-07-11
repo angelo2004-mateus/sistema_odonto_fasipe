@@ -68,6 +68,16 @@ const Navbar = () => {
               <ShowNameLink nameLink={nameLink} name="Profissionais" />
             )}
           </NavLink>
+
+          <NavLink
+            to="/anamnese/listar"
+          >
+            <TbHealthRecognition /> Anamnese
+            {nameLink === "Anamnese" && (
+              <ShowNameLink nameLink={nameLink} name="Anamnese" />
+            )}
+          </NavLink>
+          
         </nav>
       </div>
     </div>

@@ -11,9 +11,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+// Mexer só aqui
 const { cadastrarPaciente, buscarTodosPacientes, buscarPaciente } = require('./src/controllers/PacienteController');
-const { cadastrarAnamnese } = require('./src/controllers/AnamneseController');
+const { cadastrarAnamnese, listarAnamnese } = require('./src/controllers/AnamneseController');
 const PlanoTratamentoController = require('./src/controllers/PlanoTratamentoController'); 
 
 
@@ -25,6 +25,9 @@ app.get('/paciente/buscar_paciente', buscarPaciente);
 app.post('/paciente/cadastrarAnamnese', cadastrarAnamnese);
 app.use('/plano-tratamento', PlanoTratamentoController);
 
+
+app.get("/anamnese/listar", listarAnamnese)
+// Mexer só aqui
 
 
 const env = process.env.NODE_ENV;

@@ -63,6 +63,17 @@ function cadastrarAnamnese(req, res) {
     });
 }
 
+function listarAnamnese (req, res) {
+    conn.query('SELECT * FROM anamnese_odonto', (error, results) => {
+        if (error) {
+            console.error('Erro ao buscar pacientes:', error);
+            return res.status(500).json({ mensagem: 'Erro ao buscar pacientes.' });
+        }
+        return res.status(200).json(results);
+    });
+}
+
 module.exports = {
-    cadastrarAnamnese
+    cadastrarAnamnese,
+    listarAnamnese
 };

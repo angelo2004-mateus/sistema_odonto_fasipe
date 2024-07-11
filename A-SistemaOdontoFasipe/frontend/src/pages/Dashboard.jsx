@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ListarPaciente from "../components/ListarPacientes"
 import "./Dashboard.scss";
 
 
@@ -17,6 +18,7 @@ const Dashboard = () => {
     <section className="dashboard_section">
      <div className="name_page_section">
         <h2>Dashboard</h2>
+        <ListarPaciente />
      </div>
      
     </section>
