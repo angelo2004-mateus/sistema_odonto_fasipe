@@ -11,11 +11,11 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Mexer só aqui
+
 const { cadastrarPaciente, buscarTodosPacientes, buscarPaciente } = require('./src/controllers/PacienteController');
 const { cadastrarAnamnese, listarAnamnese } = require('./src/controllers/AnamneseController');
-const PlanoTratamentoController = require('./src/controllers/PlanoTratamentoController'); 
-
+const PlanoTratamentoController = require('./src/controllers/PlanoTratamentoController');
+const { listarProfissionais } = require('./src/controllers/ProfissionalController'); 
 
 app.post('/paciente/cadastrar', cadastrarPaciente);
 app.get('/paciente/todos_pacientes', buscarTodosPacientes);
@@ -23,12 +23,10 @@ app.get('/paciente/buscar_paciente', buscarPaciente);
 
 
 app.post('/paciente/cadastrarAnamnese', cadastrarAnamnese);
+app.get('/anamnese/listar', listarAnamnese);
 app.use('/plano-tratamento', PlanoTratamentoController);
 
-
-app.get("/anamnese/listar", listarAnamnese)
-// Mexer só aqui
-
+app.get('/profissionais', listarProfissionais); 
 
 const env = process.env.NODE_ENV;
 const { port } = require(`./src/config/config.${env}.json`);

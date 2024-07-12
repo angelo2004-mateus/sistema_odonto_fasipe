@@ -1,0 +1,60 @@
+// src/pages/ListagemProfissionais.scss
+@import '../App.scss';
+.listagem-profissionais {
+    padding: 20px;
+    background-color: #f9f9f9;
+    
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      
+      thead {
+        tr {
+          background-color: $color-primary;
+          color: #fff;
+  
+          th {
+            padding: 10px;
+            text-align: left;
+          }
+        }
+      }
+  
+      tbody {
+        tr {
+          &:nth-of-type(even) {
+            background-color: #f2f2f2;
+          }
+  
+          td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+  
+            &.ativo {
+              color: green;
+              font-weight: bold;
+            }
+  
+            &.inativo {
+              color: red;
+              font-weight: bold;
+            }
+  
+            &.suspenso {
+              color: orange;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  
