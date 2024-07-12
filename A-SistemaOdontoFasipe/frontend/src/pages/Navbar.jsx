@@ -13,9 +13,9 @@ import ShowNameLink from "../components/ShowNameLink";
 const Navbar = () => {
   const [nameLink, setNameLink] = useState("");
 
-  // const showNameLink = (name) => {
-  //   setNameLink(name);
-  // };
+  const showNameLink = (name) => {
+     console.log('teste')
+  };
 
   return (
     <div className="navbar_container">
