@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardDashboard from "../components/CardDashboard";
 import ListarPacientes from "../components/ListarPacientes";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineDocument } from "react-icons/hi";
 import { TbHealthRecognition } from "react-icons/tb";
+import React, { useState, useEffect } from "react";
+
 import "./Dashboard.scss";
 
 const Dashboard = () => {

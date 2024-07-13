@@ -8,7 +8,6 @@ import Paciente from "./pages/Paciente";
 import CadastroAnamnese from "./pages/CadastroAnamnese";
 import AnamneseDente from "./pages/AnamneseDente";
 import PlanoTratamento from "./pages/PlanoTratamento";
-import ListarAnamnese from "./pages/ListarAnamnese";
 
 function App() {
   return (
@@ -43,7 +42,6 @@ function AppContent() {
           <Route path="/paciente/cadastroAnamnese" element={<CadastroAnamnese />} />
           <Route path="/cadastro-dentes/:cpf_pac" element={<AnamneseDente />} />
           <Route path="/plano-tratamento/:cpf_pac" element={<PlanoTratamento />} />
-          <Route path="/anamnese/listar" element={<ListarAnamnese />} />
         </Routes>
       </div>
     </>

@@ -74,6 +74,14 @@ const CadastroAnamnese = () => {
     navigate(`/cadastro-dentes/${formData.cpf_pac}`);
   };
 
+  const getCurrentDate = () => {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+    return date.toISOString().split('T')[0];
+  };
+
+  const today = getCurrentDate();
+
   return (
     <section className="general_container_anm">
       <section className="container_cadastro_anm">
@@ -148,13 +156,13 @@ const CadastroAnamnese = () => {
               onChange={(e) => handleNumericChange(e, "anm_rg", 9)}
             />
 
-            {/* Estado de saude do paciente */}
+            {/* Estado de saúde do paciente */}
             <input
               type="text"
               id="anm_estado_saude"
               name="anm_estado_saude"
               maxLength="100"
-              placeholder="Estado de saude"
+              placeholder="Estado de saúde"
               value={formData.anm_estado_saude}
               onChange={handleInputChange}
             />
@@ -192,7 +200,7 @@ const CadastroAnamnese = () => {
               onChange={handleInputChange}
             />
 
-            {/* Tratamentos anterioes do Paciente */}
+            {/* Tratamentos anteriores do Paciente */}
             <input
               type="text"
               id="anm_trata_antes"
@@ -203,7 +211,7 @@ const CadastroAnamnese = () => {
               onChange={handleInputChange}
             />
 
-            {/* Procedimentos cirurgicos anteriores */}
+            {/* Procedimentos cirúrgicos anteriores */}
             <input
               type="text"
               id="anm_proced_cir"
@@ -270,182 +278,165 @@ const CadastroAnamnese = () => {
               onChange={handleInputChange}
             />
 
-            {/* Tratamento terminado */}
+            {/* Termo de tratamento */}
             <input
               type="text"
               id="anm_term_tratamento"
               name="anm_term_tratamento"
-              maxLength="100"
-              placeholder="Tratamento terminado"
+              maxLength="50"
+              placeholder="Termo de tratamento"
               value={formData.anm_term_tratamento}
               onChange={handleInputChange}
             />
 
-            {/* Sangramento gengival do paciente */}
+            {/* Sangramento gengival */}
             <input
               type="text"
               id="anm_sangramento_gengival"
               name="anm_sangramento_gengival"
-              maxLength="100"
-              placeholder="Sangramento gengival do paciente"
+              maxLength="2"
+              placeholder="Sangramento gengival"
               value={formData.anm_sangramento_gengival}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_sangramento_gengival", 2)}
             />
 
-            {/* Condição da boca */}
+            {/* Boca */}
             <input
               type="text"
               id="anm_boca"
               name="anm_boca"
-              maxLength="100"
-              placeholder="Condição da boca"
+              maxLength="2"
+              placeholder="Boca"
               value={formData.anm_boca}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_boca", 2)}
             />
 
-            {/* Hábitos bucais do paciente */}
+            {/* Hábitos bucais */}
             <input
               type="text"
               id="anm_hab_bucais"
               name="anm_hab_bucais"
               maxLength="100"
-              placeholder="Hábitos bucais do paciente"
+              placeholder="Hábitos bucais"
               value={formData.anm_hab_bucais}
               onChange={handleInputChange}
             />
 
-            {/* Paciente possui dores na face */}
+            {/* Dores na face */}
             <input
               type="text"
               id="anm_dores_face"
               name="anm_dores_face"
               maxLength="100"
-              placeholder="Paciente possui dores na face"
+              placeholder="Dores na face"
               value={formData.anm_dores_face}
               onChange={handleInputChange}
             />
 
-            {/* Respiração do paciente */}
+            {/* Respiração */}
             <input
               type="text"
               id="anm_respiracao"
               name="anm_respiracao"
-              maxLength="100"
-              placeholder="Respiração do paciente"
+              maxLength="2"
+              placeholder="Respiração"
               value={formData.anm_respiracao}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_respiracao", 2)}
             />
 
-            {/* Deglutição do paciente */}
+            {/* Deglutição */}
             <input
               type="text"
               id="anm_degluticao"
               name="anm_degluticao"
-              maxLength="100"
-              placeholder="Deglutição do paciente"
+              maxLength="2"
+              placeholder="Deglutição"
               value={formData.anm_degluticao}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_degluticao", 2)}
             />
 
-            {/* Assimetria do paciente */}
+            {/* Assimetria */}
             <input
               type="text"
               id="anm_assimetria"
               name="anm_assimetria"
-              maxLength="100"
-              placeholder="Assimetria do paciente"
+              maxLength="2"
+              placeholder="Assimetria"
               value={formData.anm_assimetria}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_assimetria", 2)}
             />
 
-            {/* ATM do paciente */}
+            {/* ATM */}
             <input
               type="text"
               id="anm_atm"
               name="anm_atm"
-              maxLength="100"
-              placeholder="ATM do paciente"
+              maxLength="2"
+              placeholder="ATM"
               value={formData.anm_atm}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_atm", 2)}
             />
 
-            {/* Linfonodos do paciente */}
+            {/* Linfonodos */}
             <input
               type="text"
               id="anm_linfonodos"
               name="anm_linfonodos"
-              maxLength="100"
-              placeholder="Linfonodos do paciente"
+              maxLength="2"
+              placeholder="Linfonodos"
               value={formData.anm_linfonodos}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_linfonodos", 2)}
             />
 
-            {/* Musculos do paciente */}
+            {/* Músculos */}
             <input
               type="text"
               id="anm_musculos"
               name="anm_musculos"
-              maxLength="100"
-              placeholder="Musculos do paciente"
+              maxLength="2"
+              placeholder="Músculos"
               value={formData.anm_musculos}
-              onChange={handleInputChange}
+              onChange={(e) => handleNumericChange(e, "anm_musculos", 2)}
             />
 
-            {/* Fonação do paciente */}
+            {/* Fonologia */}
             <input
               type="text"
               id="anm_fonacao"
               name="anm_fonacao"
-              maxLength="100"
-              placeholder="Fonação do paciente"
+              maxLength="2"
+              placeholder="Fonologia"
               value={formData.anm_fonacao}
+              onChange={(e) => handleNumericChange(e, "anm_fonacao", 2)}
+            />
+
+            {/* Última visita ao médico */}
+            <input
+              type="date"
+              id="anm_ult_visita_med"
+              name="anm_ult_visita_med"
+              max={today}
+              placeholder="Última visita ao médico"
+              value={formData.anm_ult_visita_med}
               onChange={handleInputChange}
             />
 
-            {/* Ultima visita do paciente ao médico */}
-            <div className="input-container">
-              <input
-                type="date"
-                id="anm_ult_visita_med"
-                name="anm_ult_visita_med"
-                value={formData.anm_ult_visita_med}
-                onChange={handleInputChange}
-              />
-              <span
-                className={`placeholder ${
-                  formData.anm_ult_visita_med ? "hidden" : ""
-                }`}
-              >
-                Última visita Médica
-              </span>
-            </div>
+            {/* Última visita ao dentista */}
+            <input
+              type="date"
+              id="anm_ult_visita_dent"
+              name="anm_ult_visita_dent"
+              max={today}
+              placeholder="Última visita ao dentista"
+              value={formData.anm_ult_visita_dent}
+              onChange={handleInputChange}
+            />
 
-            {/* Ultima visita do paciente ao dentista */}
-            <div className="input-container">
-              <input
-                type="date"
-                id="anm_ult_visita_dent"
-                name="anm_ult_visita_dent"
-                value={formData.anm_ult_visita_dent}
-                onChange={handleInputChange}
-              />
-              <span
-                className={`placeholder ${
-                  formData.anm_ult_visita_dent ? "hidden" : ""
-                }`}
-              >
-                Última Visita ao dentista
-              </span>
-            </div>
-
-            {/* Enviar formulário */}
-            <button className="btn" type="submit">
-              Cadastrar Anamnese
-            </button>
+            <button type="submit">Salvar</button>
           </form>
         </div>
-        <ToastContainer />
       </section>
+      <ToastContainer />
     </section>
   );
 };
