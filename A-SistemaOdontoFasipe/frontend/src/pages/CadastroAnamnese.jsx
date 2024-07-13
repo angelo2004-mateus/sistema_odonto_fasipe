@@ -74,6 +74,15 @@ const CadastroAnamnese = () => {
     navigate(`/cadastro-dentes/${formData.cpf_pac}`);
   };
 
+ 
+  const getCurrentDate = () => {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+    return date.toISOString().split('T')[0];
+  };
+
+  const today = getCurrentDate();
+
   return (
     <section className='container_cadastro_paciente'>
       <div className='container_button_form'>
@@ -104,8 +113,8 @@ const CadastroAnamnese = () => {
           {/* RG do paciente */}
           <input type="text" id="anm_rg" name="anm_rg" maxLength="9" placeholder='RG' value={formData.anm_rg} onChange={(e) => handleNumericChange(e, 'anm_rg', 9)} />
 
-          {/* Estado de saude do paciente */}
-          <input type="text" id="anm_estado_saude" name="anm_estado_saude" maxLength="100" placeholder='Estado de saude' value={formData.anm_estado_saude} onChange={handleInputChange} />
+          {/* Estado de saúde do paciente */}
+          <input type="text" id="anm_estado_saude" name="anm_estado_saude" maxLength="100" placeholder='Estado de saúde' value={formData.anm_estado_saude} onChange={handleInputChange} />
           
           {/* Fazendo tratamento médico */}
           <input type="text" id="anm_trata_med" name="anm_trata_med" maxLength="100" placeholder='Tratamento médico' value={formData.anm_trata_med} onChange={handleInputChange} />
@@ -116,10 +125,10 @@ const CadastroAnamnese = () => {
           {/* Medicamento em uso do Paciente */}
           <input type="text" id="anm_med_uso" name="anm_med_uso" maxLength="2000" placeholder='Medicamento em uso' value={formData.anm_med_uso} onChange={handleInputChange} />
           
-          {/* Tratamentos anterioes do Paciente */}
+          {/* Tratamentos anteriores do Paciente */}
           <input type="text" id="anm_trata_antes" name="anm_trata_antes" maxLength="50" placeholder='Tratamentos anteriores' value={formData.anm_trata_antes} onChange={handleInputChange} />
           
-          {/* Procedimentos cirurgicos anteriores */}
+          {/* Procedimentos cirúrgicos anteriores */}
           <input type="text" id="anm_proced_cir" name="anm_proced_cir" maxLength="150" placeholder='Procedimentos anteriores' value={formData.anm_proced_cir} onChange={handleInputChange} />
           
           {/* Doenças próprias ou familiares */}
@@ -167,23 +176,23 @@ const CadastroAnamnese = () => {
           {/* Linfonodos do paciente */}
           <input type="text" id="anm_linfonodos" name="anm_linfonodos" maxLength="100" placeholder='Linfonodos do paciente' value={formData.anm_linfonodos} onChange={handleInputChange} />
           
-          {/* Musculos do paciente */}
-          <input type="text" id="anm_musculos" name="anm_musculos" maxLength="100" placeholder='Musculos do paciente' value={formData.anm_musculos} onChange={handleInputChange} />
+          {/* Músculos do paciente */}
+          <input type="text" id="anm_musculos" name="anm_musculos" maxLength="100" placeholder='Músculos do paciente' value={formData.anm_musculos} onChange={handleInputChange} />
           
           {/* Fonação do paciente */}
           <input type="text" id="anm_fonacao" name="anm_fonacao" maxLength="100" placeholder='Fonação do paciente' value={formData.anm_fonacao} onChange={handleInputChange} />
           
-          {/* Ultima visita do paciente ao médico */}
+          {/* Última visita do paciente ao médico */}
           <div className="input-container">
-            <input type="date" id="anm_ult_visita_med" name="anm_ult_visita_med" value={formData.anm_ult_visita_med} onChange={handleInputChange} />
+            <input type="date" id="anm_ult_visita_med" name="anm_ult_visita_med" value={formData.anm_ult_visita_med} onChange={handleInputChange} max={today} />
             <span className={`placeholder ${formData.anm_ult_visita_med ? 'hidden' : ''}`}>
               Última visita Médica
             </span>
           </div>
 
-          {/* Ultima visita do paciente ao dentista */}
+          {/* Última visita do paciente ao dentista */}
           <div className="input-container">
-            <input type="date" id="anm_ult_visita_dent" name="anm_ult_visita_dent" value={formData.anm_ult_visita_dent} onChange={handleInputChange} />
+            <input type="date" id="anm_ult_visita_dent" name="anm_ult_visita_dent" value={formData.anm_ult_visita_dent} onChange={handleInputChange} max={today} />
             <span className={`placeholder ${formData.anm_ult_visita_dent ? 'hidden' : ''}`}>
               Última Visita ao dentista
             </span>

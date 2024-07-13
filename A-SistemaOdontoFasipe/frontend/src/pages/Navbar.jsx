@@ -59,7 +59,7 @@ const Navbar = () => {
           </NavLink>
 
           <NavLink
-            to="/profissional"
+            to="/profissionais"
             onMouseEnter={() => showNameLink("Profissionais")}
             onMouseLeave={() => showNameLink("")}
           >
