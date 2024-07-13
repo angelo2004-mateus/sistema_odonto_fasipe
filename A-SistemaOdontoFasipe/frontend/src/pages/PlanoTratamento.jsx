@@ -9,9 +9,10 @@ const PlanoTratamento = () => {
   const { cpf_pac } = useParams();
   const navigate = useNavigate();
   
-  // Função para obter a data atual no formato YYYY-MM-DD
+  // Função para obter a data atual no formato YYYY-MM-DD no fuso horário local
   const getCurrentDate = () => {
     const date = new Date();
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     return date.toISOString().split('T')[0];
   };
 
