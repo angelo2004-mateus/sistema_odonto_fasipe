@@ -284,7 +284,7 @@ const CadastroAnamnese = () => {
               id="anm_term_tratamento"
               name="anm_term_tratamento"
               maxLength="50"
-              placeholder="Termo de tratamento"
+              placeholder="Terminou o tratamento?"
               value={formData.anm_term_tratamento}
               onChange={handleInputChange}
             />
@@ -294,10 +294,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_sangramento_gengival"
               name="anm_sangramento_gengival"
-              maxLength="2"
+              maxLength="150"
               placeholder="Sangramento gengival"
               value={formData.anm_sangramento_gengival}
-              onChange={(e) => handleNumericChange(e, "anm_sangramento_gengival", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Boca */}
@@ -305,10 +305,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_boca"
               name="anm_boca"
-              maxLength="2"
-              placeholder="Boca"
+              maxLength="100"
+              placeholder="Apresenta dificuldade em abrir a boca?"
               value={formData.anm_boca}
-              onChange={(e) => handleNumericChange(e, "anm_boca", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Hábitos bucais */}
@@ -338,10 +338,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_respiracao"
               name="anm_respiracao"
-              maxLength="2"
+              maxLength="100"
               placeholder="Respiração"
               value={formData.anm_respiracao}
-              onChange={(e) => handleNumericChange(e, "anm_respiracao", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Deglutição */}
@@ -349,10 +349,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_degluticao"
               name="anm_degluticao"
-              maxLength="2"
+              maxLength="100"
               placeholder="Deglutição"
               value={formData.anm_degluticao}
-              onChange={(e) => handleNumericChange(e, "anm_degluticao", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Assimetria */}
@@ -360,10 +360,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_assimetria"
               name="anm_assimetria"
-              maxLength="2"
+              maxLength="100"
               placeholder="Assimetria"
               value={formData.anm_assimetria}
-              onChange={(e) => handleNumericChange(e, "anm_assimetria", 2)}
+              onChange={handleInputChange}
             />
 
             {/* ATM */}
@@ -371,10 +371,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_atm"
               name="anm_atm"
-              maxLength="2"
+              maxLength="100"
               placeholder="ATM"
               value={formData.anm_atm}
-              onChange={(e) => handleNumericChange(e, "anm_atm", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Linfonodos */}
@@ -382,10 +382,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_linfonodos"
               name="anm_linfonodos"
-              maxLength="2"
+              maxLength="100"
               placeholder="Linfonodos"
               value={formData.anm_linfonodos}
-              onChange={(e) => handleNumericChange(e, "anm_linfonodos", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Músculos */}
@@ -393,10 +393,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_musculos"
               name="anm_musculos"
-              maxLength="2"
-              placeholder="Músculos"
+              maxLength="100"
+              placeholder="Musculos Face/pescoço"
               value={formData.anm_musculos}
-              onChange={(e) => handleNumericChange(e, "anm_musculos", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Fonologia */}
@@ -404,10 +404,10 @@ const CadastroAnamnese = () => {
               type="text"
               id="anm_fonacao"
               name="anm_fonacao"
-              maxLength="2"
-              placeholder="Fonologia"
+              maxLength="100"
+              placeholder="Fonação"
               value={formData.anm_fonacao}
-              onChange={(e) => handleNumericChange(e, "anm_fonacao", 2)}
+              onChange={handleInputChange}
             />
 
             {/* Última visita ao médico */}
