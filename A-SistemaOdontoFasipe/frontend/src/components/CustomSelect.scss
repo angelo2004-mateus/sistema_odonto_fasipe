@@ -1,0 +1,62 @@
+@import '../App.scss';
+
+.custom-select {
+    position: relative;
+    width: 200px;
+
+    span {
+        color: $border-color;
+    }
+  
+    .select-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid $border-color;
+      border-radius: 5px;
+      cursor: pointer;
+  
+      .selected-option {
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+  
+      .arrow {
+        font-size: 12px;
+  
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  
+    .options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+  
+      .option {
+        padding: 10px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+    }
+  }
+  
+
+  .select-header:hover {
+    border-color: $color-primary;
+  }

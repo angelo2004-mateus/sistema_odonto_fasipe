@@ -1,5 +1,6 @@
 import "./App.scss";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
 import CadastroPaciente from "./pages/CadastroPaciente";
 import Navbar from "./pages/Navbar";
@@ -7,26 +8,43 @@ import Paciente from "./pages/Paciente";
 import CadastroAnamnese from "./pages/CadastroAnamnese";
 import AnamneseDente from "./pages/AnamneseDente";
 import PlanoTratamento from "./pages/PlanoTratamento";
-import ListagemProfissionais from "./pages/ListagemProfissionais"; // Importar o novo componente
 
 function App() {
   return (
     <section className="app">
       <BrowserRouter>
-        <Navbar />
-        <div className="general_container">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/paciente/cadastro" element={<CadastroPaciente />} />
-            <Route path="/paciente/deletar" element={<Paciente />} />
-            <Route path="/paciente/cadastroAnamnese" element={<CadastroAnamnese />} />
-            <Route path="/cadastro-dentes/:cpf_pac" element={<AnamneseDente />} />
-            <Route path="/plano-tratamento/:cpf_pac" element={<PlanoTratamento />} />
-            <Route path="/profissionais" element={<ListagemProfissionais />} /> {/* Adicionar a nova rota */}
-          </Routes>
-        </div>
+        <AppContent />
       </BrowserRouter>
     </section>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const generalContainer = document.querySelector('.general_container');
+    if (generalContainer && (location.pathname === "/paciente/cadastro" || location.pathname === "/paciente/cadastroAnamnese")) {
+      generalContainer.classList.add('active_scroll');
+    } else {
+      generalContainer.classList.remove('active_scroll');
+    }
+  }, [location.pathname]);
+
+  return (
+    <>
+      <Navbar />
+      <div className="general_container">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/paciente/cadastro" element={<CadastroPaciente />} />
+          <Route path="/paciente/deletar" element={<Paciente />} />
+          <Route path="/paciente/cadastroAnamnese" element={<CadastroAnamnese />} />
+          <Route path="/cadastro-dentes/:cpf_pac" element={<AnamneseDente />} />
+          <Route path="/plano-tratamento/:cpf_pac" element={<PlanoTratamento />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

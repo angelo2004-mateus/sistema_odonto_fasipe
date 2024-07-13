@@ -1,10 +1,12 @@
 @import '../App.scss';
 
-.container_cadastro_paciente {
+
+.general_container_anm{
+.container_cadastro_anm {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 
     .container_button_form {
         display: flex;
@@ -167,4 +169,4 @@
       font-size: 14px;
       padding: 5px;
     }
-  }
+  }}
